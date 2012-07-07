@@ -104,4 +104,14 @@ comment
     assert_equal 2, @css_parsed.sections.count
   end
 
+  test "includes the next line for each section in SCSS" do
+    assert_equal 'button{',
+      @scss_parsed.section('2.1.1').code_line
+  end
+
+  test "includes the next line for each section in CSS" do
+    assert_equal 'button {',
+      @css_parsed.section('2.1.1').code_line
+  end
+
 end

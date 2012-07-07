@@ -16,15 +16,16 @@ module Kss
 
       Dir["#{base_path}/**/*.*"].each do |filename|
         parser = CommentParser.new(filename)
-        parser.blocks.each do |comment_block|
-          add_section comment_block, filename if self.class.kss_block?(comment_block)
+        parser.blocks.each do |(comment_block, code_line)|
+          add_section comment_block, code_line, filename if self.class.kss_block?(comment_block)
         end
       end
     end
 
-    def add_section comment_text, filename
+    def add_section comment_text, code_line, filename
       base_name = File.basename(filename)
       section = Section.new(comment_text, base_name)
+      section.code_line = code_line
       @sections[section.section] = section
     end
 

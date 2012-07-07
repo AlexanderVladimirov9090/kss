@@ -11,6 +11,8 @@ module Kss
     # Public: Returns the filename where this section is found.
     attr_reader :filename
 
+    attr_accessor :code_line
+
     # Public: Initialize a new Section
     #
     # comment_text - The raw comment String, minus any comment syntax.

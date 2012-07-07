@@ -118,7 +118,10 @@ module Kss
 
           # Store the current block if we're done
           unless self.class.single_line_comment?(line) || inside_multi_line_block
-            @blocks << normalize(current_block) unless current_block.nil?
+            unless current_block.nil?
+              code_line = line.strip
+              @blocks << [normalize(current_block), code_line]
+            end
 
             inside_single_line_block = false
             current_block = nil

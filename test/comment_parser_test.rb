@@ -4,7 +4,7 @@ class CommentParser < Kss::Test
 
   def setup
     loc = 'test/fixtures/comments.txt'
-    @parsed_comments = Kss::CommentParser.new(loc).blocks
+    @parsed_comments = Kss::CommentParser.new(loc).blocks.map {|a| a[0]}
   end
 
   test "detects single-line comment syntax" do
